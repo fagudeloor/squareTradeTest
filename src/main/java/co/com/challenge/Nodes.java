@@ -42,17 +42,16 @@ public class Nodes {
     private static int computingLevelFromRoot(List<Node> parent, Node child, int i, boolean b) {
         if (b)
             return i;
-
         i++;
         for (Node node : parent) {
             System.out.println("i = " + i + ", " + node.equals(child));
-            if (node.equals(child))
-                return i;
-
-            int level = computingLevelFromRoot(node.getSubNodes(), child, i, false);
+            if (node.equals(child)){
+                b = true;
+                break;
+            }
+            return computingLevelFromRoot(node.getSubNodes(), child, i, false);
         }
-
-        throw new RuntimeException("The node doesn't exist!!!");
+        return i;
     }
 
 
